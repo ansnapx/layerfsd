@@ -1,0 +1,26 @@
+TARGETNAME=aesni
+TARGETTYPE=DRIVER_LIBRARY
+TARGETPATH=..\..\drvlib
+
+INCLUDES = \
+        ..\..\inc \
+        ..\
+
+NTTARGETFILES = \
+        "$(OBJ_PATH)\$(O)\iaesx64.obj" \
+        "$(OBJ_PATH)\$(O)\iaesx86_safeseh.obj"  \
+        "$(OBJ_PATH)\$(O)\aes_amd64.obj" \
+        "$(OBJ_PATH)\$(O)\aes_x86_v1.obj"
+
+amd64_SOURCES = \
+        ..\iaesx64.s \
+        ..\aes_amd64.asm
+
+i386_SOURCES = \
+        ..\iaesx86_safeseh.s \
+        ..\aes_x86_v1.asm
+
+SOURCES= \
+        ..\aeskey.c \
+        ..\aestab.c \
+        ..\aesni.c

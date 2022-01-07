@@ -1,0 +1,138 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <assert.h>
+#include <stdlib.h>
+#include "aesni.h"
+
+#define AES_BLOCK_SIZE 16
+
+#pragma intrinsic( __rdtsc )
+
+__inline volatile unsigned long long read_tsc(void)
+{
+    return __rdtsc();
+}
+
+typedef struct {
+    unsigned char key[32];
+    AES_MODE      mode;
+    unsigned char data[AES_BLOCK_SIZE * 2];
+    unsigned char expected_cipher[AES_BLOCK_SIZE * 2];
+} TEST_CASE;
+
+aesni_ctx ctx;
+
+TEST_CASE testcase[] = {
+    /* test case 1 */
+    {
+        {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f},
+        AESNI_128,
+        {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
+         0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff},
+        {0x69, 0xc4, 0xe0, 0xd8, 0x6a, 0x7b, 0x04, 0x30, 0xd8, 0xcd, 0xb7, 0x80, 0x70, 0xb4, 0xc5, 0x5a,
+         0x69, 0xc4, 0xe0, 0xd8, 0x6a, 0x7b, 0x04, 0x30, 0xd8, 0xcd, 0xb7, 0x80, 0x70, 0xb4, 0xc5, 0x5a}
+    },
+    /* test case 2 */
+    {
+        {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+         0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17},
+        AESNI_192,
+        {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
+         0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff},
+        {0xdd, 0xa9, 0x7c, 0xa4, 0x86, 0x4c, 0xdf, 0xe0, 0x6e, 0xaf, 0x70, 0xa0, 0xec, 0xd, 0x71, 0x91,
+         0xdd, 0xa9, 0x7c, 0xa4, 0x86, 0x4c, 0xdf, 0xe0, 0x6e, 0xaf, 0x70, 0xa0, 0xec, 0xd, 0x71, 0x91}
+    },
+    /* test case 3 */
+    {
+        {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
+         0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f},
+        AESNI_256,
+        {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff,
+         0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff},
+        {0x8e, 0xa2, 0xb7, 0xca, 0x51, 0x67, 0x45, 0xbf, 0xea, 0xfc, 0x49, 0x90, 0x4b, 0x49, 0x60, 0x89,
+         0x8e, 0xa2, 0xb7, 0xca, 0x51, 0x67, 0x45, 0xbf, 0xea, 0xfc, 0x49, 0x90, 0x4b, 0x49, 0x60, 0x89}
+    },
+};
+
+int __cdecl main(int argc, char *argv[])
+{
+    int i;
+    int ret;
+    unsigned char *cipher = NULL, *plain = NULL;
+
+    cipher = (unsigned char *)malloc(AES_BLOCK_SIZE * 2);
+    plain = (unsigned char *)malloc(AES_BLOCK_SIZE * 2);
+
+    if (!cipher || !plain)
+        goto l_end;
+
+    printf("has aes ni: %s\n", has_aesni() ? "yes" : "no");
+
+    aesni_init();
+    
+    for (i = 0; i < sizeof(testcase) / sizeof(TEST_CASE); i++) {
+
+        use_aesni_if_present();
+        ret = aesni_encrypt(testcase[i].key, testcase[i].mode, testcase[i].data, cipher, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].expected_cipher, cipher, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_decrypt(testcase[i].key, testcase[i].mode, cipher, plain, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].data, plain, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_init_ctx(testcase[i].key, testcase[i].mode, &ctx);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+
+        ret = aesni_encrypt_ctx(&ctx, testcase[i].data, cipher, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;        
+        assert(0 == memcmp(testcase[i].expected_cipher, cipher, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_decrypt_ctx(&ctx, cipher, plain, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].data, plain, AES_BLOCK_SIZE * 2));
+
+        no_use_aesni();
+        ret = aesni_encrypt(testcase[i].key, testcase[i].mode, testcase[i].data, cipher, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].expected_cipher, cipher, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_decrypt(testcase[i].key, testcase[i].mode, cipher, plain, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].data, plain, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_init_ctx(testcase[i].key, testcase[i].mode, &ctx);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+
+        ret = aesni_encrypt_ctx(&ctx, testcase[i].data, cipher, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;        
+        assert(0 == memcmp(testcase[i].expected_cipher, cipher, AES_BLOCK_SIZE * 2));
+
+        ret = aesni_decrypt_ctx(&ctx, cipher, plain, AES_BLOCK_SIZE * 2);
+        if (AESNI_SUCCESS != ret)
+            goto l_end;
+        assert(0 == memcmp(testcase[i].data, plain, AES_BLOCK_SIZE * 2));
+
+        printf("test case %d is ok\n", i + 1); 
+    }
+    
+l_end:
+    if (cipher)
+        free(cipher);
+
+    if (plain)
+        free(plain);
+    
+    aesni_fini();
+
+    return 0;
+}

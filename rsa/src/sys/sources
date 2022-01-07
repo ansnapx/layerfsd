@@ -1,0 +1,27 @@
+TARGETNAME=rsa
+TARGETTYPE=DRIVER_LIBRARY
+TARGETPATH=..\..\drvlib
+
+INCLUDES=..\..\inc
+
+#C_DEFINES=$(C_DEFINES) -DUNICODE -D_UNICODE -D_DDK_BUILD
+C_DEFINES=$(C_DEFINES) -DRSA_WINDOWS_DRIVER
+
+SOURCES=\
+    ..\desc.c \
+    ..\md5c.c \
+    ..\md2c.c \
+    ..\md4c.c  \
+    ..\nn.c  \
+    ..\prime.c \
+    ..\r_dh.c \
+    ..\r_encode.c \
+    ..\r_enhanc.c \
+    ..\r_keygen.c \
+    ..\r_random.c \
+    ..\r_stdlib.c \
+    ..\rsa.c \
+    ..\shsc.c
+
+
+

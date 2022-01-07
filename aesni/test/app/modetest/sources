@@ -1,0 +1,13 @@
+TARGETNAME=modetest
+TARGETTYPE=PROGRAM
+
+USE_MSVCRT=1
+UMTYPE=console
+UMBASE=0x0400000
+
+INCLUDES=$(INCLUDES);..\..\..\inc
+
+SOURCES=modetest.c
+
+TARGETLIBS=$(TARGETLIBS) \
+           ..\..\..\applib\*\aesni.lib

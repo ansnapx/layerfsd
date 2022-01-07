@@ -1,0 +1,13 @@
+TARGETNAME=basetest
+TARGETTYPE=PROGRAM
+
+USE_MSVCRT=1
+UMTYPE=console
+UMBASE=0x0400000
+
+INCLUDES=$(INCLUDES);..\..\..\inc;..\..\..\src
+
+SOURCES=basetest.c
+
+TARGETLIBS=$(TARGETLIBS) \
+           ..\..\..\applib\*\aesni.lib

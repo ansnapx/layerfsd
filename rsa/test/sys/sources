@@ -1,0 +1,10 @@
+TARGETNAME=rsatest
+TARGETTYPE=DRIVER
+
+INCLUDES=..\..\inc
+TARGETLIBS=..\..\drvlib\*\rsa.lib
+
+SOURCES=test.c
+
+
+

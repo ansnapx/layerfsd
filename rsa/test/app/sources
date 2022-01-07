@@ -1,0 +1,12 @@
+TARGETNAME=rsatest
+TARGETTYPE=PROGRAM
+
+USE_MSVCRT=1
+UMTYPE=console
+UMBASE=0x0400000
+
+INCLUDES=..\..\inc
+TARGETLIBS=$(TARGETLIBS) \
+           ..\..\applib\*\rsa.lib
+
+SOURCES=test.c

@@ -1,0 +1,88 @@
+[Version]
+Signature   = "$Windows NT$"
+Class       = "ActivityMonitor"                         ;This is determined by the work this filter driver does
+ClassGuid   = {b86dff51-a31e-4bac-b3cf-e8cfe75c9fc2}    ;This value is determined by the Class
+Provider    = %Msft%
+DriverPackageType=FileSystemFilter
+DriverVer   =06/16/2007,1.0.0.0
+
+[DestinationDirs]
+DefaultDestDir                   = 12
+aestest.DriverFiles     = 12            ;%windir%\system32\drivers
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = aestest.DriverFiles
+
+[DefaultInstall.Services]
+AddService          = %ServiceName%,,aestest.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles   = aestest.DriverFiles
+
+[DefaultUninstall.Services]
+DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+
+;
+; Services Section
+;
+
+[aestest.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys        ;%windir%\system32\drivers\
+Dependencies     = FltMgr
+ServiceType      = 2                            ;SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 1                            ;SERVICE_SYSTEM_START
+ErrorControl     = 1                            ;SERVICE_ERROR_NORMAL
+LoadOrderGroup   = "FSFilter Activity Monitor"
+AddReg           = aestest.AddRegistry
+
+;
+; Registry Modifications
+;
+
+[aestest.AddRegistry]
+HKR,,"AesFlag",0x00010001, 0xf
+HKR,"Instances","DefaultInstance",0x00000000,%DefaultInstance%
+HKR,"Instances\"%Instance1.Name%,"Altitude",0x00000000,%Instance1.Altitude%
+HKR,"Instances\"%Instance1.Name%,"Flags",0x00010001,%Instance1.Flags%
+
+;
+; Copy Files
+;
+
+[aestest.DriverFiles]
+%DriverName%.sys
+
+[SourceDisksFiles]
+aestest.sys = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+;;
+;; String Section
+;;
+
+[Strings]
+Msft                    = "ansnap@sina.com"
+ServiceDescription      = "aestest mini-filter driver"
+ServiceName             = "aestest"
+DriverName              = "aestest"
+DiskId1                 = "aestest Installation Disk"
+
+;Instances specific information.
+DefaultInstance         = "aestest Instance"
+Instance1.Name          = "aestest Instance"
+Instance1.Altitude      = "370020"
+Instance1.Flags         = 0x0              ; Allow all attachments
+
