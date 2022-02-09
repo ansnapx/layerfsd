@@ -1,3 +1,5 @@
+# Overview
+
 LFS is layered file system driver for Windows. LFS stays above any existing
 file systems (NTFS, ExFat, Ext2Fsd etc) and can intercept and interpret all
 i/o requests.
@@ -10,19 +12,6 @@ based units of LFS. When a user i/o request arrives at LFS, LFS knows how to
 interpret and which underlying file system driver to talk to and where to lead
 the data streams.
 
-Typical working modes of LFS:
+## Architecture
 
-*)  Passthru
-    LFS just intercepts and monitors all i/o requests (irp), but doesn't re-
-    interprect or modify any one
-
-*)  Proxy
-    LFS does re-interpretion for pattern-based requests. A pattern could be a
-    match of specified files or directories, content keywords or signatures,
-    pre-defined set of processes etc
-
-*） Object Storage
-    Underlying file systems and volumes are treated as object-based storages,
-    and LFS *DOES* take over whole namespace management and data manipulation,
-    then to implement file-level RAID, replication, COW or snapshots.
-    
+​    ![image-20220209111911458](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20220209111911458.png)
