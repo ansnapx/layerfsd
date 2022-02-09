@@ -14,4 +14,5 @@ the data streams.
 
 ## Architecture
 
-​    ![image-20220209111911458](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20220209111911458.png)
+![image](https://user-images.githubusercontent.com/79788735/153116178-c1a1ec3a-b8a6-48b4-81b0-3bea31363165.png)
+
