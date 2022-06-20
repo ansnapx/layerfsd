@@ -18,4 +18,16 @@
 	Revision 1.00 - JSAK.
 */
 
+#ifndef _PRIME_H_
+#define _PRIME_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int GeneratePrime PROTO_LIST ((NN_DIGIT *, NN_DIGIT *, NN_DIGIT *, NN_DIGIT *, unsigned int, R_RANDOM_STRUCT *));
+
+#ifdef __cplusplus
+}
+#endif
+#endif//_PRIME_H_

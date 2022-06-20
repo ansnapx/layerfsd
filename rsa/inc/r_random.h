@@ -18,5 +18,18 @@
 	Revision 1.00 - JSAK.
 */
 
+#ifndef _R_RANDOM_H_
+#define _R_RANDOM_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int __stdcall R_GenerateBytes
   (unsigned char *, unsigned int, R_RANDOM_STRUCT *);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif//_R_RANDOM_H_

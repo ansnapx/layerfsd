@@ -21,13 +21,17 @@
 #ifndef _GLOBAL_H_
 #define _GLOBAL_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* PROTOTYPES should be set to one if and only if the compiler supports
 		 function argument prototyping.
 	 The following makes PROTOTYPES default to 1 if it has not already been
 		 defined as 0 with C compiler flags. */
 
 #ifndef PROTOTYPES
-//#define PROTOTYPES 1
+#define PROTOTYPES 1
 #endif
 
 /* POINTER defines a generic pointer type */
@@ -63,4 +67,7 @@ typedef signed long int signeddigit;
 #define PROTO_LIST(list) ()
 #endif
 
+#ifdef __cplusplus
+}
+#endif
 #endif /* _GLOBAL_H_ */

@@ -18,6 +18,13 @@
 	Revision 1.00 - JSAK.
 */
 
+#ifndef _RSA_H_
+#define _RSA_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 int __stdcall RSAPublicEncrypt PROTO_LIST ((unsigned char *, unsigned int *, unsigned char *, unsigned int,
                                             R_RSA_PUBLIC_KEY *, R_RANDOM_STRUCT *));
 int __stdcall RSAPrivateEncrypt PROTO_LIST ((unsigned char *, unsigned int *, unsigned char *, unsigned int,
@@ -26,3 +33,8 @@ int __stdcall RSAPublicDecrypt PROTO_LIST ((unsigned char *, unsigned int *, uns
                                             R_RSA_PUBLIC_KEY *));
 int __stdcall RSAPrivateDecrypt PROTO_LIST ((unsigned char *, unsigned int *, unsigned char *, unsigned int,
                                             R_RSA_PRIVATE_KEY *));
+#ifdef __cplusplus
+}
+#endif
+
+#endif//_RSA_H_
