@@ -1,0 +1,83 @@
+;;;
+;;; WLFS
+;;;
+
+[Version]
+Signature   = "$Windows NT$"
+Class       = "Encryption"                              ;
+ClassGuid   = {a0a701c0-a511-42ff-aa6c-06dc0395576f}    ;
+Provider    = %WLFS%
+DriverVer   = 06/21/2022,1.0.0.0
+CatalogFile = WLFS.cat
+
+
+[DestinationDirs]
+DefaultDestDir       = 12
+WLFS.DriverFiles     = 12            ;%windir%\system32\drivers
+
+;;
+;; Default install sections
+;;
+
+[DefaultInstall]
+OptionDesc          = %ServiceDescription%
+CopyFiles           = WLFS.DriverFiles, WLFS.UserFiles
+
+[DefaultInstall.Services]
+AddService          = %ServiceName%,,WLFS.Service
+
+;;
+;; Default uninstall sections
+;;
+
+[DefaultUninstall]
+DelFiles   = WLFS.DriverFiles, WLFS.UserFiles
+
+[DefaultUninstall.Services]
+DelService = %ServiceName%,0x200      ;Ensure service is stopped before deleting
+
+;
+; Services Section
+;
+
+[WLFS.Service]
+DisplayName      = %ServiceName%
+Description      = %ServiceDescription%
+ServiceBinary    = %12%\%DriverName%.sys        ;%windir%\system32\drivers\
+ServiceType      = 2                            ;SERVICE_FILE_SYSTEM_DRIVER
+StartType        = 1                            ;SERVICE_SYSTEM_START
+ErrorControl     = 1                            ;SERVICE_ERROR_NORMAL
+AddReg           = WLFS.AddRegistry
+
+;
+; Registry Modifications
+;
+
+[WLFS.AddRegistry]
+
+;
+; Copy Files
+;
+
+[WLFS.DriverFiles]
+%DriverName%.sys
+
+[WLFS.UserFiles]
+
+[SourceDisksFiles]
+WLFS.sys = 1,,
+
+[SourceDisksNames]
+1 = %DiskId1%,,,
+
+;;
+;; String Section
+;;
+
+[Strings]
+WLFS                    = "WLFS"
+ServiceDescription      = "Secure Layered File System Driver"
+ServiceName             = "WLFS"
+DriverName              = "WLFS"
+UserAppName             = "WLFS"
+DiskId1                 = "WLFS Installation Disk"

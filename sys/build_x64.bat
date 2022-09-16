@@ -7,8 +7,6 @@ call SETENV.bat %WDKPATH%\ %DDK_BUILD_ARGS% no_oacr
 if ERRORLEVEL 1 exit /b 1
 POPD
 
-PAUSE
-
 PUSHD ..\aesni
 echo ==================================================================
 echo Builing AESNI

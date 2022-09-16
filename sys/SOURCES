@@ -1,0 +1,49 @@
+TARGETNAME=WLFS
+TARGETTYPE=DRIVER
+DRIVERTYPE=FS
+
+INCLUDES=$(INCLUDES);..;..\aesni\inc;..\rsa\inc
+
+TARGETLIBS=$(DDK_LIB_PATH)\wdmsec.lib  \
+           ..\aesni\drvlib\*\aesni.lib \
+           ..\rsa\drvlib\*\rsa.lib
+
+USER_C_FLAGS=$(USER_C_FLAGS) /D__KERNEL__ /WX
+
+SOURCES=..\wlfs.rc     \
+		..\avl.c       \
+		..\close.c     \
+		..\cmcb.c      \
+		..\core.c      \
+		..\create.c    \
+		..\cypher.c    \
+		..\devctl.c    \
+		..\dir.c       \
+		..\ea.c        \
+		..\fastio.c    \
+		..\fc.c        \
+		..\flush.c     \
+		..\fsctl.c     \
+		..\icb.c       \
+		..\info.c      \
+		..\lfs.c       \
+		..\lock.c      \
+		..\log.c       \
+		..\meta.c      \
+		..\pnp.c       \
+		..\quota.c     \
+		..\csq.c       \
+		..\rw.c        \
+		..\seal.c      \
+		..\security.c  \
+		..\sha2.c      \
+		..\strusup.c   \
+		..\td.c        \
+		..\unload.c    \
+		..\user.c      \
+		..\util.c      \
+		..\volume.c    \
+		..\wi.c        \
+		..\filter.c    \
+		..\xfer.c
+         
