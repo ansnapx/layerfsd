@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="avl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="xfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="close.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="create.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="devctl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fastio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="flush.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fsctl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lfs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lock.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pnp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="quota.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="security.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="strusup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="td.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="unload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="user.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="volume.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cmcb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cypher.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="seal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="meta.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="csq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aesni\src\aeskey.c">
+      <Filter>Source Files\aesni</Filter>
+    </ClCompile>
+    <ClCompile Include="aesni\src\aesni.c">
+      <Filter>Source Files\aesni</Filter>
+    </ClCompile>
+    <ClCompile Include="aesni\src\aestab.c">
+      <Filter>Source Files\aesni</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\desc.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\md2c.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\md4c.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\md5c.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\nn.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\prime.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_dh.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_encode.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_enhanc.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_keygen.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_random.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\r_stdlib.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\rsa.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa\src\shsc.c">
+      <Filter>Source Files\rsa</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{0102a1c9-429d-4733-8759-e8fc687105e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{3c0a76e5-ebc1-4dae-ade9-41e03c6fce19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{803569f7-c472-43d4-ab18-70037b8ff162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\aesni">
+      <UniqueIdentifier>{388f5a8c-2d99-4177-b22f-07ef8c810d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\rsa">
+      <UniqueIdentifier>{5f82dc2e-5661-4f60-a429-06bd817f5067}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lfs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ioctl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="seal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\des.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\global.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\md2.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\md4.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\md5.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\nn.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\prime.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\r_random.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\rsa.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\rsaeuro.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\rsaref.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="rsa\inc\shs.h">
+      <Filter>Source Files\rsa</Filter>
+    </ClInclude>
+    <ClInclude Include="meta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="aesni\src\aes_amd64.asm">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\aes_x86_v1.asm">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\aes_x86_v2.asm">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\DIRS">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\iaesx64.s">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\iaesx86.s">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="aesni\src\iaesx86_safeseh.s">
+      <Filter>Source Files\aesni</Filter>
+    </None>
+    <None Include="rsa\src\dirs">
+      <Filter>Source Files\rsa</Filter>
+    </None>
+    <None Include="DIRS">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wlfs.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
